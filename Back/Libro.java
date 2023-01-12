@@ -46,4 +46,7 @@ public class Libro{
         Libro l1 = (Libro) l;
         return this.Titulo.equalsIgnoreCase(l1.getTitulo());
     }
+    public String toString(){
+        return this.Titulo;
+    }
 }
