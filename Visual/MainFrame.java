@@ -110,13 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String a = JOptionPane.showInputDialog("Introduzaca su carnet de Identidad");
-        Cliente c;
-        try {
-            c = feria.getCliente(a);
-        } catch (ClienteNotFound ex) {
-            c = new Cliente(a);
-            feria.addCliente(c);
-        }
+        Cliente c = feria.getCliente(a);
         Util.launchFrame(new ClientePage(c), this);
     }//GEN-LAST:event_jButton2ActionPerformed
 
