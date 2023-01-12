@@ -11,6 +11,9 @@ public class Sala {
     public Sala(String Nombre){
         this.nombre = Nombre;
     }
+    public List<Libro> get_lista_de_libros(){
+        return this.lista_de_libros;
+    }
     public String getNombre(){
         return this.nombre;
     }
