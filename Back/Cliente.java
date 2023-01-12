@@ -30,6 +30,9 @@ public class Cliente {
         }
         else return 1;
     }
+    public void recoger(){
+        this.lista_pedidos.clear();
+    }
     public boolean equals(Object o){
         Cliente c = (Cliente) o;
         return this.id.equals(c.getId());
