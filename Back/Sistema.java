@@ -36,4 +36,12 @@ public class Sistema {
     public List<Sala> get_lista_salas(){
         return this.lista_de_salas;
     }
+    public Cliente getCliente(String id){
+        for(Cliente c : lista_de_clientes){
+            if(c.getId().equals(id)){
+                return c;
+            }
+        }
+        throw new ClienteNotFound();
+    }
 }
