@@ -4,7 +4,7 @@ import java.util.List;
 
 import Back.Exception.ClienteNotFound;
 public class Sistema {
-    int cont = 1;
+    public int cont = 1;
     public List<Cliente> lista_de_clientes = new ArrayList<>();
     public List<Sala> lista_de_salas = new ArrayList<>();
     int cantidadCancelados = 0;
