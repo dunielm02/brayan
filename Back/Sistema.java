@@ -7,7 +7,7 @@ public class Sistema {
     public int cont = 1;
     public List<Cliente> lista_de_clientes = new ArrayList<>();
     public List<Sala> lista_de_salas = new ArrayList<>();
-    int cantidadCancelados = 0;
+    public int cantidadCancelados = 0;
     public Sistema(){
 
     }
