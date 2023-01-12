@@ -43,7 +43,8 @@ public class Pedido {
         else s = "Despachado";
         return this.libro.getTitulo() + " " + Integer.toString(this.cantPedido) + " " + s; 
     }
-    public boolean equals(Pedido p){
-        return this.libro.equals(p.getLibro());
+    public boolean equals(Object p){
+        Pedido p1 = (Pedido) p;
+        return this.libro.equals(p1.getLibro());
     }
 }

@@ -42,7 +42,8 @@ public class Libro{
     public void setMateria(String materia) {
         this.materia = materia;
     }
-    public boolean equals(Libro l){
-        return this.Titulo.equalsIgnoreCase(l.getTitulo());
+    public boolean equals(Object l){
+        Libro l1 = (Libro) l;
+        return this.Titulo.equalsIgnoreCase(l1.getTitulo());
     }
 }

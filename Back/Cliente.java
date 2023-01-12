@@ -23,8 +23,12 @@ public class Cliente {
     public void add_Pedido(Pedido p){
         this.lista_pedidos.add(p);
     }
-    public void removePedido(Pedido p){
-        lista_pedidos.remove(p);
+    public int removePedido(Pedido p){
+        if(p.get_Despachado() == false){
+            lista_pedidos.remove(p);
+            return 0;
+        }
+        else return 1;
     }
     public boolean equals(Object o){
         Cliente c = (Cliente) o;

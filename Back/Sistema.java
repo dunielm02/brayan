@@ -6,7 +6,7 @@ import java.util.Set;
 
 import Back.Exception.ExisteVendedorException;
 public class Sistema {
-    int cont = 1;
+    public int cont = 1;
     public List<Cliente> lista_de_clientes = new ArrayList<>();
     public List<Sala> lista_de_salas = new ArrayList<>();
     private ArrayList<Vendedor> vendedores;
@@ -62,7 +62,6 @@ public class Sistema {
     public List<Sala> get_lista_salas(){
         return this.lista_de_salas;
     }
-
     public ArrayList<Libro> getLibros(){
         ArrayList<Libro> libros = new ArrayList<>();
         Set<Libro> set = new HashSet<>();
