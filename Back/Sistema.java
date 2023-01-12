@@ -1,6 +1,8 @@
 package Back;
 import java.util.ArrayList;
 import java.util.List;
+
+import Back.Exception.ClienteNotFound;
 public class Sistema {
     int cont = 1;
     public List<Cliente> lista_de_clientes = new ArrayList<>();
@@ -36,7 +38,7 @@ public class Sistema {
     public List<Sala> get_lista_salas(){
         return this.lista_de_salas;
     }
-    public Cliente getCliente(String id){
+    public Cliente getCliente(String id) throws ClienteNotFound{
         for(Cliente c : lista_de_clientes){
             if(c.getId().equals(id)){
                 return c;
