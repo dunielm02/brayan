@@ -19,6 +19,7 @@ public class Sistema {
     public void addCliente(Cliente cliente) throws ExisteClienteException {
         if(!this.lista_de_clientes.contains(cliente)){
             this.lista_de_clientes.add(cliente);
+            cont++;
         }else{
             throw new ExisteClienteException();
         }        
