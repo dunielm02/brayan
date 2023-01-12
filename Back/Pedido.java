@@ -3,9 +3,9 @@ public class Pedido {
     private Libro libro;
     private int valor_pedido = 0;
     private int cantPedido = 0;
-    private String vendedor = "";
+    private Vendedor vendedor;
     private boolean despachado = false;
-    public Pedido(Libro libro, int cantPedido, String Vendedor) {
+    public Pedido(Libro libro, int cantPedido, Vendedor Vendedor) {
         this.libro = libro;
         this.cantPedido = cantPedido;
         this.valor_pedido = libro.getValor()*cantPedido;
@@ -31,6 +31,9 @@ public class Pedido {
     }
     public void setDespachado(boolean flag){
         this.despachado = flag;
+    }
+    public void setVendedor(Vendedor v){
+        this.vendedor = v;
     }
     public boolean get_Despachado(){
         return this.despachado;
