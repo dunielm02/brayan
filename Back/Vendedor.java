@@ -1,3 +1,5 @@
+package Back;
+
 public class Vendedor {
     String id = "";
     double cant = 0;

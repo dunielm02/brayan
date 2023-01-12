@@ -1,3 +1,4 @@
+package Back;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,5 +25,9 @@ public class Cliente {
     }
     public void removePedido(Pedido p){
         lista_pedidos.remove(p);
+    }
+    public boolean equals(Object o){
+        Cliente c = (Cliente) o;
+        return this.id.equals(c.getId());
     }
 }
