@@ -5,6 +5,12 @@
  */
 package Visual;
 
+import Back.Cliente;
+import Back.Exception.ClienteNotFound;
+import Back.Sistema;
+import Back.Vendedor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
+    public static Sistema feria;
+    
     public MainFrame() {
         initComponents();
     }
@@ -32,6 +37,10 @@ public class MainFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,8 +52,25 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cliente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Elija su Rol");
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Importar");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Exportar");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,15 +96,29 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String a = JOptionPane.showInputDialog("Introduzca el ID del Trabajador");
+        String id = JOptionPane.showInputDialog("Introduzca el ID del Trabajador");
+        Vendedor v = feria.getVendedor(id);
+        Util.launchFrame(new VendedorPage(v), this);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String a = JOptionPane.showInputDialog("Introduzaca su carnet de Identidad");
+        Cliente c;
+        try {
+            c = feria.getCliente(a);
+        } catch (ClienteNotFound ex) {
+            c = new Cliente(a);
+            feria.addCliente(c);
+        }
+        Util.launchFrame(new ClientePage(c), this);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,5 +159,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }
