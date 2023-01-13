@@ -70,14 +70,15 @@ public class DoRequest extends javax.swing.JFrame {
                 list = selected.getListaPorMateria(materia);
             }
         }
-        String[] columnNames = {"Titulo", "Autor", "Sinopsis", "Precio"};
-        String[][] data = new String[list.size()][4];
+        String[] columnNames = {"Titulo", "Autor", "Sinopsis", "Materia", "Precio"};
+        String[][] data = new String[list.size()][5];
         int i=0;
         for(Libro c : list){
             data[i][0] = c.getTitulo();
             data[i][1] = c.getAutor();
             data[i][2] = c.getSinopsis();
-            data[i][3] = Double.toString(c.getValor());
+            data[i][3] = c.getMateria();
+            data[i][4] = Double.toString(c.getValor());
             i++;
         }
         
@@ -261,9 +262,10 @@ public class DoRequest extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (SalaList.getSelectedIndex() > 0)
+        
+        if (SalaList.getSelectedIndex() >= 0){
             actulizarListaMaterias((Sala) SalaList.getSelectedValue());
-        else {
+        }else {
             actulizarListaMaterias(null);
         }
         actualizarTabla();

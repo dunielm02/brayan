@@ -29,7 +29,6 @@ public class ClientePage extends javax.swing.JFrame {
     
     public void actualizarLista() {
         Vector<Pedido> vector = new Vector<Pedido>( c.getLista_pedidos() );
-        JOptionPane.showMessageDialog(rootPane, vector.size());
         Jlist.setListData(vector);
         jLabel2.setText(Double.toString(c.getImporteTotal()));
     }
@@ -143,6 +142,10 @@ public class ClientePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(Jlist.getSelectedIndex() < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un Pedido");
+            return;
+        }
         Pedido a = (Pedido) Jlist.getSelectedValue();
         c.removePedido(a);
         MainFrame.feria.setCantidadCancelados(1 + MainFrame.feria.getCantidadCancelados());

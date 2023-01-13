@@ -126,6 +126,10 @@ public class VendedorPage extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String a = JOptionPane.showInputDialog("Entre el nombre de la sala");
+        if(Util.isNull(a)){
+            JOptionPane.showMessageDialog(rootPane, "El nombre de la sala no puede ser vacio");
+            return;
+        }
         try {
             MainFrame.feria.addSala(new Sala(a));
         } catch (ExisteSalaException ex) {
@@ -138,6 +142,10 @@ public class VendedorPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(Jlist.getSelectedIndex() < 0){
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un pedido");
+            return;
+        }
         Pedido a = (Pedido) Jlist.getSelectedValue();
         a.setDespachado(true);
         a.setVendedor(v);

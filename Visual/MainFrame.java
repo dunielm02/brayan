@@ -134,12 +134,19 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String id = JOptionPane.showInputDialog("Introduzca el ID del Trabajador");
+        if(Util.isNull(id)){
+            JOptionPane.showMessageDialog(rootPane, "El Id no puede estar vacio");
+        }
         Vendedor v = feria.getVendedor(id);
         Util.launchFrame(new VendedorPage(v), this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String a = JOptionPane.showInputDialog("Introduzaca su carnet de Identidad");
+        if(!Util.areAllDigits(a) || a.length() != 11){
+            //JOptionPane.showMessageDialog(rootPane, "Incerte un carnet de identidad valido");
+            //return;
+        }
         Cliente c = feria.getCliente(a);
         Util.launchFrame(new ClientePage(c), this);
     }//GEN-LAST:event_jButton2ActionPerformed
