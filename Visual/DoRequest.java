@@ -60,7 +60,6 @@ public class DoRequest extends javax.swing.JFrame {
             }else{
                 String materia = (String) MateriaCombo.getSelectedItem();
                 list = MainFrame.feria.getLibrosMateria(materia);
-                JOptionPane.showMessageDialog(MateriaCombo, list.size());
             }
         }else{
             Sala selected = (Sala) SalaList.getSelectedValue();
@@ -243,12 +242,19 @@ public class DoRequest extends javax.swing.JFrame {
             return;
         }
         Libro lib = list.get(a);
+        
+        if(!Util.areAllDigits(cantField.getText())){
+            JOptionPane.showMessageDialog(MateriaCombo, "La Cantidad debe ser un Numero entero");
+            return;
+        }
+        
         int b = Integer.parseInt(cantField.getText());
         if( b <= lib.getCantidad() && b > 0 ){
             c.add_Pedido(new Pedido( lib, b ));
             lib.setCantidad(lib.getCantidad()-b);
         }else{
             JOptionPane.showMessageDialog(MateriaCombo, "La cantidad seleccionada debe ser menor o igual a la cantidad de libros");
+            return;
         }
         caller.actualizarLista();
         dispose();

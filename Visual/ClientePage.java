@@ -6,8 +6,12 @@
 package Visual;
 
 import Back.Cliente;
+import Back.FaltanDespachadosException;
 import Back.Pedido;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,11 +24,14 @@ public class ClientePage extends javax.swing.JFrame {
     public ClientePage(Cliente c) {
         this.c = c;
         initComponents();
+        actualizarLista();
     }
     
     public void actualizarLista() {
         Vector<Pedido> vector = new Vector<Pedido>( c.getLista_pedidos() );
+        JOptionPane.showMessageDialog(rootPane, vector.size());
         Jlist.setListData(vector);
+        jLabel2.setText(Double.toString(c.getImporteTotal()));
     }
 
     /**
@@ -68,6 +75,11 @@ public class ClientePage extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         jButton3.setText("Realizar Compra");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancelar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -132,12 +144,22 @@ public class ClientePage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Pedido a = (Pedido) Jlist.getSelectedValue();
-        MainFrame.feria.setCantidadCancelados(c.removePedido(a) + MainFrame.feria.getCantidadCancelados());
+        c.removePedido(a);
+        MainFrame.feria.setCantidadCancelados(1 + MainFrame.feria.getCantidadCancelados());
+        a.getLibro().add(a.getCantPedido());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            c.recoger();
+        } catch (FaltanDespachadosException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList Jlist;

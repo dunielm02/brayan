@@ -25,6 +25,7 @@ public class VendedorPage extends javax.swing.JFrame {
     public VendedorPage(Vendedor v) {
         this.v = v;
         initComponents();
+        actualizarLista();
     }
     
     public void actualizarLista() {
