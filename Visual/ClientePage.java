@@ -70,6 +70,11 @@ public class ClientePage extends javax.swing.JFrame {
         jButton3.setText("Realizar Compra");
 
         jButton4.setText("Cancelar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,6 +134,10 @@ public class ClientePage extends javax.swing.JFrame {
         Pedido a = (Pedido) Jlist.getSelectedValue();
         MainFrame.feria.setCantidadCancelados(c.removePedido(a) + MainFrame.feria.getCantidadCancelados());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList Jlist;
