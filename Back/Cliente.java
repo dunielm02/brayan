@@ -6,6 +6,7 @@ public class Cliente {
     private String id="";
     private String tarjeta="";
     private List<Pedido> lista_pedidos = new ArrayList<>();
+    private double importeTotal = 0;
     public Cliente(String Id, String Tarjeta){
         this.id = Id;
         this.tarjeta = Tarjeta;
@@ -32,8 +33,16 @@ public class Cliente {
     public void setLista_pedidos(List<Pedido> lista_pedidos) {
         this.lista_pedidos = lista_pedidos;
     }
+    public void actualImporte(){
+        double x = 0;
+        for(Pedido p : lista_pedidos){
+            x += p.getValor_pedido();
+        }
+        return x;
+    }
     public void add_Pedido(Pedido p){
         this.lista_pedidos.add(p);
+        actualImporte();
     }
     public int removePedido(Pedido p){
         if(p.get_Despachado() == false){
