@@ -28,7 +28,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class Util {
     public static void exportar(Sistema sistema, String dir) throws FileNotFoundException, IOException{
-        dir += "Feria.dad";
+        dir += "Feria.dat";
 
         ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(dir));
 
@@ -46,7 +46,7 @@ public class Util {
 
         return sistema;
     }
-    
+
     public static void launchFrame(javax.swing.JFrame frame, Frame caller) {
         //caller.setEnabled(false);
         frame.setLocation(innerPosition(caller, frame));

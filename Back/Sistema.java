@@ -111,6 +111,21 @@ public class Sistema {
         return libros;        
     }
 
+    public ArrayList<Libro> getLibrosMateria(String materia){
+        ArrayList<Libro> libros = new ArrayList<>();
+        Set<Libro> set = new HashSet<>();
+
+        for (Sala sala: this.lista_de_salas) {
+            for (Libro libro : sala.get_lista_de_libros()) {
+                set.add(libro);
+            }
+        }
+
+        libros.addAll(set);
+
+        return libros;
+    }
+
     public int getCont() {
         return cont;
     }
