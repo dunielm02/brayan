@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 
 import Back.Sistema;
+import javax.swing.JFileChooser;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -125,16 +126,16 @@ public class Util {
         }
     }
     
-//    public static String launchLoadOptions(Frame caller) {
-//        JFileChooser fileChooser = new JFileChooser();
-//        fileChooser.setFileFilter(new CCFFileFilter());
-//        fileChooser.approveSelection();
-//        fileChooser.setDialogTitle("Seleccione el nombre del archivo");
-//        
-//        if( fileChooser.showDialog(caller, "Abrir") == JFileChooser.APPROVE_OPTION ){
-//            return fileChooser.getSelectedFile().toString();
-//        }
-//        
-//        return "";
-//    }
+    public static String launchLoadOptions(Frame caller) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new CCFFileFilter());
+        fileChooser.approveSelection();
+        fileChooser.setDialogTitle("Seleccione el nombre del archivo");
+        
+        if( fileChooser.showDialog(caller, "Abrir") == JFileChooser.APPROVE_OPTION ){
+            return fileChooser.getSelectedFile().toString();
+        }
+        
+        return "";
+    }
 }

@@ -5,9 +5,13 @@
  */
 package Visual;
 
+import Back.Exception.ExisteSalaException;
 import Back.Pedido;
+import Back.Sala;
 import Back.Vendedor;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -121,6 +125,11 @@ public class VendedorPage extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String a = JOptionPane.showInputDialog("Entre el nombre de la sala");
+        try {
+            MainFrame.feria.addSala(new Sala(a));
+        } catch (ExisteSalaException ex) {
+            JOptionPane.showMessageDialog(rootPane, "La sala ya existe");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

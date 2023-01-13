@@ -20,14 +20,14 @@ public class AddLibro extends javax.swing.JFrame {
      */
     public AddLibro() {
         initComponents();
+        actualizarListaSalas();
     }
 
     private void actualizarListaSalas() {
         List<Sala> s = MainFrame.feria.get_lista_salas();
         SalaCombo.removeAllItems();
-        SalaCombo.addItem("Ninguna");
         for(Sala x : s){
-            SalaCombo.addItem(x.toString());
+            SalaCombo.addItem(x);
         }
     }
     
@@ -90,6 +90,11 @@ public class AddLibro extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         JPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,12 +194,17 @@ public class AddLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPrecioActionPerformed
-        dispose();
+        
     }//GEN-LAST:event_JPrecioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         getData();
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
 

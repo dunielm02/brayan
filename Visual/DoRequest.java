@@ -5,10 +5,14 @@
  */
 package Visual;
 
+import Back.Cliente;
 import Back.Libro;
+import Back.Pedido;
 import Back.Sala;
 import java.util.List;
 import java.util.Set;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,14 +20,17 @@ import java.util.Set;
  */
 public class DoRequest extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DoRequest
-     */
-    public DoRequest() {
+    ClientePage caller;
+    Cliente c;
+    List<Libro> list;
+            
+    public DoRequest(ClientePage call, Cliente c) {
+        this.c = c;
+        caller = call;
         initComponents();
         actualizarListaSalas();
         actulizarListaMaterias(null);
-                
+        actualizarTabla();
     }
 
     private void actualizarListaSalas() {
@@ -45,12 +52,11 @@ public class DoRequest extends javax.swing.JFrame {
         MateriaCombo.removeAllItems();
         MateriaCombo.addItem("Ninguna");
         for(String x : s){
-            SalaCombo.addItem(x);
+            MateriaCombo.addItem(x);
         }
     }
     
-    private void actualizarLista(){
-        List<Libro> list;
+    private void actualizarTabla(){
         if(SalaCombo.getSelectedIndex() == 0){
             if(MateriaCombo.getSelectedIndex() == 0) {
                 list = MainFrame.feria.getLibros();
@@ -67,6 +73,23 @@ public class DoRequest extends javax.swing.JFrame {
                 list = selected.getListaPorMateria(materia);
             }
         }
+        String[] columnNames = {"Titulo", "Autor", "Sinopsis", "Precio"};
+        String[][] data = new String[list.size()][4];
+        int i=0;
+        for(Libro c : list){
+            data[i][0] = c.getTitulo();
+            data[i][1] = c.getAutor();
+            data[i][2] = c.getSinopsis();
+            data[i][3] = Double.toString(c.getValor());
+        }
+        
+        Tabla.setModel(new DefaultTableModel(data, columnNames){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               //all cells false
+               return false;
+            }
+        });
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -79,7 +102,9 @@ public class DoRequest extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        cantField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +122,11 @@ public class DoRequest extends javax.swing.JFrame {
         MateriaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Seleccionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +135,7 @@ public class DoRequest extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -116,7 +146,9 @@ public class DoRequest extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(Tabla);
+
+        jLabel3.setText("Cantidad a Comprar:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,23 +157,26 @@ public class DoRequest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton1))
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(SalaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(239, 239, 239))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(SalaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(MateriaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(239, 239, 239)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cantField))
+                                .addComponent(jButton2))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton1)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MateriaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -157,7 +192,11 @@ public class DoRequest extends javax.swing.JFrame {
                     .addComponent(MateriaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cantField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -180,15 +219,35 @@ public class DoRequest extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SalaComboActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int a =  Tabla.getSelectedRow();
+        if(a<0){
+            JOptionPane.showMessageDialog(MateriaCombo, "Debe seleccionar un libro");
+            return;
+        }
+        Libro lib = list.get(a);
+        int b = Integer.parseInt(cantField.getText());
+        if( b <= lib.getCantidad() && b > 0 ){
+            c.add_Pedido(new Pedido( lib, b ));
+            lib.setCantidad(lib.getCantidad()-b);
+        }else{
+            JOptionPane.showMessageDialog(MateriaCombo, "La cantidad seleccionada debe ser menor o igual a la cantidad de libros");
+        }
+        caller.actualizarLista();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox MateriaCombo;
     private javax.swing.JComboBox SalaCombo;
+    private javax.swing.JTable Tabla;
+    private javax.swing.JTextField cantField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
