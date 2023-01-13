@@ -1,5 +1,9 @@
 package Back;
-public class Pedido {
+
+import java.io.Serializable;
+
+public class Pedido implements Serializable{
+    protected static  final long serialVersionUID = 5L;
     private Libro libro;
     private double valor_pedido = 0;
     private int cantPedido = 0;

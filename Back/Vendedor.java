@@ -1,6 +1,9 @@
 package Back;
 
-public class Vendedor {
+import java.io.Serializable;
+
+public class Vendedor implements Serializable{
+    protected static  final long serialVersionUID = 5L;
     String id = "";
     double cant = 0;
     public Vendedor(String Id){

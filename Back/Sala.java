@@ -1,11 +1,13 @@
 package Back;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Sala {
+public class Sala implements Serializable{
+    protected static  final long serialVersionUID = 5L;
     String nombre = "";
     List<Libro> lista_de_libros = new ArrayList<>();
     public Sala(String Nombre){

@@ -1,5 +1,9 @@
 package Back;
-public class Libro{
+
+import java.io.Serializable;
+
+public class Libro implements Serializable{
+    protected static  final long serialVersionUID = 5L;
     private String Titulo;
     private double valor = 0;
     private String Autor;

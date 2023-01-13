@@ -1,4 +1,5 @@
 package Back;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.Set;
 import Back.Exception.ExisteClienteException;
 import Back.Exception.ExisteSalaException;
 import Back.Exception.ExisteVendedorException;
-public class Sistema {
+public class Sistema implements Serializable{
+    protected static  final long serialVersionUID = 5L;
     private int cont;
     private ArrayList<Cliente> lista_de_clientes;
     private ArrayList<Sala> lista_de_salas;

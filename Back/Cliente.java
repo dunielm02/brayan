@@ -1,8 +1,10 @@
 package Back;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
+public class Cliente implements Serializable{
+    protected static  final long serialVersionUID = 5L;
     private String id="";
     private String tarjeta="";
     private List<Pedido> lista_pedidos = new ArrayList<>();
