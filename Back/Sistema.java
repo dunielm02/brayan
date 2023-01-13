@@ -5,15 +5,28 @@ import java.util.List;
 import java.util.Set;
 
 import Back.Exception.ExisteClienteException;
+import Back.Exception.ExisteSalaException;
 import Back.Exception.ExisteVendedorException;
 public class Sistema {
-    public int cont = 1;
-    public List<Cliente> lista_de_clientes = new ArrayList<>();
-    public List<Sala> lista_de_salas = new ArrayList<>();
+    private int cont;
+    private ArrayList<Cliente> lista_de_clientes;
+    private ArrayList<Sala> lista_de_salas;
     private ArrayList<Vendedor> vendedores;
-    private int cantidadCancelados = 0;
+    private int cantidadCancelados;
     public Sistema(){
         this.vendedores = new ArrayList<>();
+        this.lista_de_clientes = new ArrayList<>();
+        this.lista_de_salas = new ArrayList<>();
+        this.cantidadCancelados = 0;
+        this.cont = 1;
+    }
+
+    public void addSala(Sala sala) throws ExisteSalaException{
+        if(!this.lista_de_salas.contains(sala)){
+            this.lista_de_salas.add(sala);
+        }else{
+            throw new ExisteSalaException();
+        }
     }
 
     public void addCliente(Cliente cliente) throws ExisteClienteException {
@@ -138,16 +151,8 @@ public class Sistema {
         return lista_de_clientes;
     }
 
-    public void setLista_de_clientes(List<Cliente> lista_de_clientes) {
-        this.lista_de_clientes = lista_de_clientes;
-    }
-
     public List<Sala> getLista_de_salas() {
         return lista_de_salas;
-    }
-
-    public void setLista_de_salas(List<Sala> lista_de_salas) {
-        this.lista_de_salas = lista_de_salas;
     }
 
     public ArrayList<Vendedor> getVendedores() {
@@ -166,4 +171,11 @@ public class Sistema {
         this.cantidadCancelados = cantidadCancelados;
     }
 
+    public void setLista_de_clientes(ArrayList<Cliente> lista_de_clientes) {
+        this.lista_de_clientes = lista_de_clientes;
+    }
+
+    public void setLista_de_salas(ArrayList<Sala> lista_de_salas) {
+        this.lista_de_salas = lista_de_salas;
+    }
 }
