@@ -22,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static Sistema feria;
     
     public MainFrame() {
+        feria = new Sistema();
         initComponents();
     }
 
