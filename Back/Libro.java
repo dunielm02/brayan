@@ -22,6 +22,9 @@ public class Libro{
     public int getCantidad(){
         return this.cantidad;
     }
+    public boolean isNull(){
+        return (this.cantidad == 0);
+    }
     public String getTitulo() {
         return Titulo;
     }
