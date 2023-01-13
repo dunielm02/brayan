@@ -115,8 +115,10 @@ public class Sistema {
         ArrayList<Libro> libros = new ArrayList<>();
         Set<Libro> set = new HashSet<>();
 
-        for (Libro libro : set) {
-            set.add(libro);
+        for (Sala sala: this.lista_de_salas) {
+            for (Libro libro : sala.get_lista_de_libros()) {
+                set.add(libro);
+            }
         }
 
         libros.addAll(set);
