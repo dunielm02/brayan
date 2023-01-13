@@ -23,6 +23,11 @@ public class Libro implements Serializable{
     public void setCantidad(int Cantidad){
         this.cantidad = Cantidad;
     }
+
+    public void addCantidad(int cantidad){
+        this.cantidad += cantidad;
+    }
+
     public int getCantidad(){
         return this.cantidad;
     }
