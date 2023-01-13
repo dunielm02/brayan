@@ -1,6 +1,7 @@
 package Back;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +22,28 @@ public class Sistema implements Serializable{
         this.lista_de_salas = new ArrayList<>();
         this.cantidadCancelados = 0;
         this.cont = 1;
+    }
+
+    public ArrayList<Vendedor> getMejoresVendedores(){
+        ArrayList<Vendedor> v = this.vendedores;
+        v.sort(new Comparator<Vendedor>(){
+           public int compare(Vendedor v1, Vendedor v2){
+               if(v1.getCant() < v2.getCant()){
+                return 1;
+            }else{
+                if( v1.getCant() == v2.getCant()){
+                    return 0;
+                }else{
+                    return -1;
+                }
+            }
+           }
+        } 
+            
+        );
+
+        return v;
+
     }
 
     public void addSala(Sala sala) throws ExisteSalaException{
