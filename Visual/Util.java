@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 
 import Back.Sistema;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -28,6 +30,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author Duniel
  */
 public class Util {
+    static File currentDirectory, currentFile;
     public static void exportar(Sistema sistema, String dir) throws FileNotFoundException, IOException{
         dir += "Feria.dat";
 
@@ -137,5 +140,32 @@ public class Util {
         }
         
         return "";
+    }
+    public static void launchSaveOptions(MainFrame caller){
+        JFileChooser fileChooser = new JFileChooser(currentDirectory);
+        fileChooser.setFileFilter(new CCFFileFilter());
+        fileChooser.approveSelection();
+        fileChooser.setDialogTitle("Seleccione el nombre del archivo");
+        
+        if( fileChooser.showDialog(caller, "Guardar") == JFileChooser.APPROVE_OPTION ){
+            try{
+                if( fileChooser.getSelectedFile().toString().endsWith(".dat") )
+                    dump(fileChooser.getSelectedFile().toString(),caller);
+                else
+                    dump(fileChooser.getSelectedFile().toString() + ".dat",caller);
+                currentDirectory = fileChooser.getCurrentDirectory();
+                currentFile = fileChooser.getSelectedFile();    
+            }
+            catch(IOException ioe){
+                System.out.println("Exception Saving File: " + ioe.getMessage());
+                JOptionPane.showMessageDialog(caller, "Exception Saving File");
+            }    
+        }
+    }
+    private static void dump(String fileName, MainFrame caller) throws FileNotFoundException, IOException{
+        ObjectOutputStream f = new ObjectOutputStream(new FileOutputStream(fileName));
+        Sistema w = caller.feria;
+        f.writeObject(w);
+        f.close();
     }
 }
