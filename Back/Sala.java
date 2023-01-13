@@ -30,15 +30,16 @@ public class Sala implements Serializable{
     public String toString(){
         return this.nombre;
     }
+
     public List<String> getListaMaterias(){
-        List<String> list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         Set<String> set = new HashSet<>();
         for(Libro l : this.lista_de_libros){
-            set.add(l.getTitulo());
+            set.add(l.getMateria());
         }
-        for(String i : set){
-            list.add(i);
-        }
+        
+        list.addAll(set);
+        
         return list;
     }
     public List<Libro> getListaPorTitulo(String Titulo){
