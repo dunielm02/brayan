@@ -132,7 +132,9 @@ public class Sistema implements Serializable{
 
         for (Sala sala: this.lista_de_salas) {
             for (Libro libro : sala.get_lista_de_libros()) {
-                set.add(libro);
+                if(libro.getMateria().equalsIgnoreCase(materia)){
+                    set.add(libro);
+                }
             }
         }
 
