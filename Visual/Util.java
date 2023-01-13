@@ -5,7 +5,16 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+
+import Back.Sistema;
+
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /*
@@ -18,6 +27,26 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author Duniel
  */
 public class Util {
+    public static void exportar(Sistema sistema, String dir) throws FileNotFoundException, IOException{
+        dir += "Feria.dad";
+
+        ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(dir));
+
+        salida.writeObject(sistema);
+
+        salida.close();
+    }
+
+    public static Sistema exportar(String dir) throws ClassNotFoundException, IOException{
+        ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(dir));
+
+        Sistema sistema = (Sistema)entrada.readObject();
+
+        entrada.close();
+
+        return sistema;
+    }
+    
     public static void launchFrame(javax.swing.JFrame frame, Frame caller) {
         //caller.setEnabled(false);
         frame.setLocation(innerPosition(caller, frame));

@@ -26,7 +26,8 @@ public class Sistema {
     }
 
     public Cliente getCliente(String id){
-        Cliente cliente = new Cliente(id);
+        String tarjeta = id + Integer.toString((int)(Math.random() * 10));
+        Cliente cliente = new Cliente(id, tarjeta);
 
         try {
             this.addCliente(cliente);
@@ -81,6 +82,21 @@ public class Sistema {
     }
     public List<Sala> get_lista_salas(){
         return this.lista_de_salas;
+    }
+
+    public ArrayList<String> getListaMaterias(){
+        ArrayList<String> materias = new ArrayList<>();
+        Set<String> set = new HashSet<>();
+
+        for (Sala sala : this.lista_de_salas) {
+            for (Libro libro : sala.get_lista_de_libros()) {
+                set.add(libro.getMateria());
+            }
+        }
+
+        materias.addAll(set);
+
+        return materias;
     }
     public ArrayList<Libro> getLibros(){
         ArrayList<Libro> libros = new ArrayList<>();
