@@ -1,7 +1,7 @@
 package Back;
 public class Pedido {
     private Libro libro;
-    private int valor_pedido = 0;
+    private double valor_pedido = 0;
     private int cantPedido = 0;
     private Vendedor vendedor;
     private boolean despachado = false;
@@ -17,7 +17,7 @@ public class Pedido {
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-    public int getValor_pedido() {
+    public double getValor_pedido() {
         return valor_pedido;
     }
     public void setValor_pedido(int valor_pedido) {

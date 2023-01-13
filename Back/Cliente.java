@@ -3,13 +3,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
-    private String id;
+    private String id="";
+    private String tarjeta="";
     private List<Pedido> lista_pedidos = new ArrayList<>();
-    public Cliente(String Id){
+    public Cliente(String Id, String Tarjeta){
         this.id = Id;
+        this.tarjeta = Tarjeta;
+    }
+    public Cliente(){
+        
     }
     public String getId() {
         return id;
+    }
+    public String getTarjeta(){
+        return this.tarjeta;
+    }
+    public void setTarjeta(String Tarjeta){
+        this.tarjeta = Tarjeta;
     }
     public void setId(String id) {
         this.id = id;
@@ -29,6 +40,9 @@ public class Cliente {
             return 0;
         }
         else return 1;
+    }
+    public void recoger(){
+        this.lista_pedidos.clear();
     }
     public boolean equals(Object o){
         Cliente c = (Cliente) o;

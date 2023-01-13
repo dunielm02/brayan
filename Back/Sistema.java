@@ -4,15 +4,37 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import Back.Exception.ExisteClienteException;
 import Back.Exception.ExisteVendedorException;
 public class Sistema {
     public int cont = 1;
     public List<Cliente> lista_de_clientes = new ArrayList<>();
     public List<Sala> lista_de_salas = new ArrayList<>();
     private ArrayList<Vendedor> vendedores;
-    int cantidadCancelados = 0;
+    private int cantidadCancelados = 0;
     public Sistema(){
         this.vendedores = new ArrayList<>();
+    }
+
+    public void addCliente(Cliente cliente) throws ExisteClienteException {
+        if(!this.lista_de_clientes.contains(cliente)){
+            this.lista_de_clientes.add(cliente);
+            cont++;
+        }else{
+            throw new ExisteClienteException();
+        }        
+    }
+
+    public Cliente getCliente(String id){
+        Cliente cliente = new Cliente(id);
+
+        try {
+            this.addCliente(cliente);
+        } catch (ExisteClienteException e) {
+            
+        }
+
+        return this.lista_de_clientes.get(this.lista_de_clientes.indexOf(cliente));
     }
 
     public void addVendedor(Vendedor vendedor) throws ExisteVendedorException{
@@ -38,9 +60,7 @@ public class Sistema {
     public boolean isCliente(Cliente c){
         return lista_de_clientes.contains(c);
     }
-    public void addCliente(Cliente c){
-        lista_de_clientes.add(c);
-    }
+    
     public List<Pedido> get_pedidos(){
         List<Pedido> list = new ArrayList<>();
         for(Cliente e: lista_de_clientes){

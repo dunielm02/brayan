@@ -1,24 +1,32 @@
 package Back;
 public class Libro{
     private String Titulo;
-    private int valor = 0;
+    private double valor = 0;
     private String Autor;
     private String ISBN;
     private String materia;
-    public Libro(String titulo, int valor, String autor, String iSBN, String Materia){
+    String sinopsis = "";
+    public Libro(String titulo, double valor, String autor, String iSBN, String Materia, String Sinopsis){
         Titulo = titulo;
         this.valor = valor;
         Autor = autor;
         ISBN = iSBN;
         this.materia = Materia;
+        this.sinopsis = sinopsis;
     }
     public String getTitulo() {
         return Titulo;
     }
+    public String getSinopsis(){
+        return this.sinopsis;
+    }
+    public void setSinopsis(String Sinopsis){
+        this.sinopsis = Sinopsis;
+    }
     public void setTitulo(String titulo) {
         Titulo = titulo;
     }
-    public int getValor() {
+    public double getValor() {
         return valor;
     }
     public void setValor(int valor) {
