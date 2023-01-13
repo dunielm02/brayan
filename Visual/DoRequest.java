@@ -5,6 +5,7 @@
  */
 package Visual;
 
+import Back.Libro;
 import Back.Sala;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,9 @@ public class DoRequest extends javax.swing.JFrame {
      */
     public DoRequest() {
         initComponents();
+        actualizarListaSalas();
+        actulizarListaMaterias(null);
+                
     }
 
     private void actualizarListaSalas() {
@@ -31,15 +35,37 @@ public class DoRequest extends javax.swing.JFrame {
         }
     }
     
-    private void actulizarListaMaterias(Sala s) {
-        if(s == null){
-            Set<String> s = feria.;
+    private void actulizarListaMaterias(Sala sa) {
+        List<String> s;
+        if(sa == null){
+            s = MainFrame.feria.getListaMaterias();
+        }else{
+            s = sa.getListaMaterias();
         }
-        Set<String> s = feria.;
         MateriaCombo.removeAllItems();
         MateriaCombo.addItem("Ninguna");
         for(String x : s){
             SalaCombo.addItem(x);
+        }
+    }
+    
+    private void actualizarLista(){
+        List<Libro> list;
+        if(SalaCombo.getSelectedIndex() == 0){
+            if(MateriaCombo.getSelectedIndex() == 0) {
+                list = MainFrame.feria.getLibros();
+            }else{
+                String materia = (String) MateriaCombo.getSelectedItem();
+                list = MainFrame.feria.getLibrosMateria(materia);
+            }
+        }else{
+            Sala selected = (Sala) SalaCombo.getSelectedItem();
+            if(MateriaCombo.getSelectedIndex() == 0){
+                list = selected.get_lista_de_libros();
+            }else{
+                String materia = (String) MateriaCombo.getSelectedItem();
+                list = selected.getListaPorMateria(materia);
+            }
         }
     }
     @SuppressWarnings("unchecked")
@@ -62,6 +88,11 @@ public class DoRequest extends javax.swing.JFrame {
         jLabel2.setText("Materia:");
 
         SalaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SalaCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaComboActionPerformed(evt);
+            }
+        });
 
         MateriaCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -139,6 +170,15 @@ public class DoRequest extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void SalaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaComboActionPerformed
+        if(SalaCombo.getSelectedIndex() == 0){
+            actulizarListaMaterias(null);
+        }else{
+            Sala sal = (Sala) SalaCombo.getSelectedItem();
+            actulizarListaMaterias(sal);
+        }
+    }//GEN-LAST:event_SalaComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -130,7 +130,8 @@ public class VendedorPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Pedido a = (Pedido) Jlist.getSelectedValue();
         a.setDespachado(true);
-        anadir vendedor
+        a.setVendedor(v);
+        actualizarLista();
     }//GEN-LAST:event_jButton1ActionPerformed
 
    
