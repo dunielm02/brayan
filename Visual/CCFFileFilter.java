@@ -10,11 +10,11 @@ import javax.swing.filechooser.FileFilter;
 class CCFFileFilter extends FileFilter {
     @Override
     public boolean accept(File file) {
-        return file.isDirectory() || file.getName().endsWith(".dad");
+        return file.isDirectory() || file.getName().endsWith(".dat");
     }
 
     @Override
     public String getDescription() {
-        return "Archivos CCF";
+        return "Archivos dat";
     }    
 }

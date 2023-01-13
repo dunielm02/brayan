@@ -38,7 +38,7 @@ public class DoRequest extends javax.swing.JFrame {
         SalaCombo.removeAllItems();
         SalaCombo.addItem("Ninguna");
         for(Sala x : s){
-            SalaCombo.addItem(x.toString());
+            SalaCombo.addItem(x);
         }
     }
     

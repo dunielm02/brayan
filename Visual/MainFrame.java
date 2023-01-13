@@ -138,12 +138,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        String dir = "";
-        try {
-            Util.exportar(feria, dir);
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Util.launchSaveOptions(this);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
