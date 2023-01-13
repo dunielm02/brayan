@@ -26,6 +26,9 @@ public class Libro implements Serializable{
     public int getCantidad(){
         return this.cantidad;
     }
+    public void add(int x){
+        this.cantidad += x;
+    }
     public boolean isNull(){
         return (this.cantidad == 0);
     }

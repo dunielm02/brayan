@@ -16,6 +16,7 @@ public class Sistema implements Serializable{
     private ArrayList<Sala> lista_de_salas;
     private ArrayList<Vendedor> vendedores;
     private int cantidadCancelados;
+
     public Sistema(){
         this.vendedores = new ArrayList<>();
         this.lista_de_clientes = new ArrayList<>();
@@ -204,5 +205,16 @@ public class Sistema implements Serializable{
 
     public void setLista_de_salas(ArrayList<Sala> lista_de_salas) {
         this.lista_de_salas = lista_de_salas;
+    }
+    public double despachadoNoRecogido(){
+        double res = 0;
+        for(Cliente  c: lista_de_clientes){
+            for(Pedido p : c.getLista_pedidos()){
+                if(p.get_Despachado()){
+                    res += p.getValor_pedido();
+                }
+            }
+        }
+        return res;
     }
 }
