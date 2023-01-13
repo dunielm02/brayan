@@ -9,9 +9,10 @@ public class Cliente {
     public Cliente(String Id, String Tarjeta){
         this.id = Id;
         this.tarjeta = Tarjeta;
+        lista_pedidos = new ArrayList<>();
     }
     public Cliente(){
-        
+
     }
     public String getId() {
         return id;
