@@ -28,23 +28,20 @@ public class Sistema implements Serializable{
     public ArrayList<Vendedor> getMejoresVendedores(){
         ArrayList<Vendedor> v = this.vendedores;
         v.sort(new Comparator<Vendedor>(){
-           public int compare(Vendedor v1, Vendedor v2){
-               if(v1.getCant() < v2.getCant()){
-                return 1;
-            }else{
-                if( v1.getCant() == v2.getCant()){
-                    return 0;
+            public int compare(Vendedor v1, Vendedor v2){
+                if(v1.getCant() < v2.getCant()){
+                    return 1;
                 }else{
-                    return -1;
+                    if( v1.getCant() == v2.getCant()){
+                        return 0;
+                    }else{
+                        return -1;
+                    }
                 }
             }
-           }
-        } 
-            
-        );
+        });
 
         return v;
-
     }
 
     public void addSala(Sala sala) throws ExisteSalaException{

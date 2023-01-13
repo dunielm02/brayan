@@ -20,8 +20,13 @@ public class Sala implements Serializable{
         return this.nombre;
     }
     public void addLibro(Libro l){
-        this.lista_de_libros.add(l);
+        if(this.lista_de_libros.contains(l)){
+            this.lista_de_libros.get(this.lista_de_libros.indexOf(l)).addCantidad(l.getCantidad());;
+        }else{
+            this.lista_de_libros.add(l);
+        }       
     }
+    
     public String toString(){
         return this.nombre;
     }
