@@ -56,7 +56,14 @@ public class Cliente implements Serializable{
         }
         else return 1;
     }
-    public void recoger(){
+    private boolean todosDespachados(){
+        for(Pedido p : lista_pedidos){
+            if(p.get_Despachado() == false) return false;
+        }
+        return true;
+    }
+    public void recoger() throws FaltanDespachadosException{
+        if(todosDespachados() == false) throw new FaltanDespachadosException();
         this.lista_pedidos.clear();
         this.importeTotal = 0;
     }
