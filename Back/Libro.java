@@ -5,14 +5,16 @@ public class Libro{
     private String Autor;
     private String ISBN;
     private String materia;
+    private int cantidad = 0;
     String sinopsis = "";
-    public Libro(String titulo, double valor, String autor, String iSBN, String Materia, String Sinopsis){
+    public Libro(String titulo, double valor, String autor, String iSBN, String Materia, String Sinopsis, int Cantidad){
         Titulo = titulo;
         this.valor = valor;
         Autor = autor;
         ISBN = iSBN;
         this.materia = Materia;
         this.sinopsis = sinopsis;
+        this.cantidad = Cantidad;
     }
     public String getTitulo() {
         return Titulo;
