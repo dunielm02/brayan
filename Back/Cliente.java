@@ -33,12 +33,15 @@ public class Cliente {
     public void setLista_pedidos(List<Pedido> lista_pedidos) {
         this.lista_pedidos = lista_pedidos;
     }
-    public void actualImporte(){
+    private void actualImporte(){
         double x = 0;
         for(Pedido p : lista_pedidos){
             x += p.getValor_pedido();
         }
-        return x;
+        this.importeTotal = x;
+    }
+    public double getImporteTotal(){
+        return this.importeTotal;
     }
     public void add_Pedido(Pedido p){
         this.lista_pedidos.add(p);
@@ -53,6 +56,7 @@ public class Cliente {
     }
     public void recoger(){
         this.lista_pedidos.clear();
+        this.importeTotal = 0;
     }
     public boolean equals(Object o){
         Cliente c = (Cliente) o;
