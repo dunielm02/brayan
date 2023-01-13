@@ -5,11 +5,10 @@ public class Pedido {
     private int cantPedido = 0;
     private Vendedor vendedor;
     private boolean despachado = false;
-    public Pedido(Libro libro, int cantPedido, Vendedor Vendedor) {
+    public Pedido(Libro libro, int cantPedido) {
         this.libro = libro;
         this.cantPedido = cantPedido;
         this.valor_pedido = libro.getValor()*cantPedido;
-        this.vendedor = Vendedor;
     }
     public Libro getLibro() {
         return libro;
