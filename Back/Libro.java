@@ -16,6 +16,12 @@ public class Libro{
         this.sinopsis = sinopsis;
         this.cantidad = Cantidad;
     }
+    public void setCantidad(int Cantidad){
+        this.cantidad = Cantidad;
+    }
+    public int getCantidad(){
+        return this.cantidad;
+    }
     public String getTitulo() {
         return Titulo;
     }
