@@ -17,7 +17,7 @@ public class Libro implements Serializable{
         Autor = autor;
         ISBN = iSBN;
         this.materia = Materia;
-        this.sinopsis = sinopsis;
+        this.sinopsis = Sinopsis;
         this.cantidad = Cantidad;
     }
     public void setCantidad(int Cantidad){
